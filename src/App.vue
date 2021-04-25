@@ -1,15 +1,26 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <HelloWorld msg="Bang" @callHandEmit="handEmitClick" />
+  {{ x }}
+  {{ y }}
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import useMouse from '@/composition-api/useMouse';
+import HelloWorld from '@/components/HelloWorld.vue';
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
+  },
+  setup() {
+    const { x, y } = useMouse();
+
+    const handEmitClick = (val) => {
+      console.log(val);
+    };
+    return { handEmitClick, x, y };
   },
 };
 </script>
